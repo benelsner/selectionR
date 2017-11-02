@@ -1,0 +1,144 @@
+%\documentclass[12pt, a4paper]{article}
+\documentclass[11pt, a4paper]{article}
+\usepackage{lmodern}
+\usepackage{svg}
+\usepackage{fixltx2e}
+%\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage{epstopdf}
+\usepackage{amsmath}
+\usepackage[german,english]{babel}
+\usepackage{dsfont}
+%\usepackage{geometry}
+%\geometry{a4paper, top=6cm, left=2.5cm, right=3.0cm, bottom=2.0cm, includehead, includefoot}
+%\geometry{showframe}
+\usepackage{lscape}
+\usepackage[latin1]{inputenc}
+\usepackage[round]{natbib}
+\usepackage[T1]{fontenc}
+\usepackage[singlespacing]{setspace}
+\usepackage{eurosym}
+\usepackage{float}
+\usepackage[section]{placeins}
+\usepackage{rotating}
+\usepackage{url}
+\urlstyle{same}
+\usepackage{booktabs}
+%\usepackage[left=1in,right=1in,top=1in,bottom=1in,includeheadfoot]{geometry}
+	%\usepackage[a4paper, left=2in]{geometry}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{longtable}
+\usepackage{threeparttable}
+\usepackage{dcolumn}
+\usepackage{ragged2e}
+\usepackage {a4}
+\usepackage{geometry}
+\geometry{a4paper, top=2.5cm, left=3.5cm, right=2.5cm, bottom=0.5cm, includehead, includefoot}
+
+
+
+\begin{document}
+
+%xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+% Data
+
+\section{Skill distributions}
+
+
+\begin{figure}
+\centering
+\includegraphics[width=0.8\linewidth]{dist_mexinus.png}
+\caption{Skill distributions of Mexicans in the US, raw data}
+\end{figure}
+
+
+\begin{figure}
+\centering
+\includegraphics[width=0.8\linewidth]{dist_mexinmex.png}
+\caption{Skill distributions of Mexican emigrants, Mexican skill prices, raw data}
+\end{figure}
+
+
+\begin{figure}
+\centering
+\includegraphics[width=0.8\linewidth]{dist_mexdiff.png}
+\caption{Skill distributions of the Mexican population}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.8\linewidth]{dist_usdiff.png}
+\caption{Skill distributions of the US population, difference selected vs. neutral}
+\end{figure}
+
+
+
+%xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+% Calibration
+
+\section{Calibration and model outputs under the baseline}
+
+\begin{table}[h]
+\begin{center}
+\caption{Calibration}
+\begin{tabular}{lccc}
+\hline \hline
+\multicolumn{3}{l}{\textbf{A. Common parameters}} \\
+\input{calib1.tex}
+%\hline
+\\
+\multicolumn{3}{l}{\textbf{B. Country-specific parameters}} \\
+&& \textit{US} & \textit{Mexico} \\
+\cline{3-4}
+%\hline
+\input{calib2.tex}
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+
+%xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+% Baseline results of the model
+
+
+\begin{table}[h]
+\begin{center}
+\caption{Baseline values}
+\begin{tabular}{lcc}
+\hline \hline
+& \textit{US} & \textit{Mexico} \\
+\hline
+\input{baseline.tex}
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+
+%xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+%  Baseline results: the impact of self-selection
+\section{Results}
+
+\begin{table}[h]
+\begin{center}
+\caption{Baseline results}
+\begin{tabular}{lcc}
+\hline \hline
+& \textit{US} & \textit{Mexico} \\
+\hline
+\multicolumn{3}{l}{\textit{A. Aggregate results}} \\
+\input{changes1.tex}
+\\
+\multicolumn{3}{l}{\textit{B. Changes in real wages (by quintile)}} \\
+\input{changes2.tex}
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+
+
+\end{document}
