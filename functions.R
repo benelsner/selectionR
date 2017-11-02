@@ -120,7 +120,7 @@ equil <- function(zbar, skilldist, vars) {
 
 
 #########################################################
-# Find equilibrium
+# Find equilibrium for given variables
 findeq<-function(skilldist, vars){
   
   # set up the grid [i,j]
@@ -138,6 +138,7 @@ findeq<-function(skilldist, vars){
     
   return(zbar_opt)
 }
+
 
 
 #########################################################
@@ -173,6 +174,22 @@ outputs<-function(zbar, skilldist, vars){
     outputs<-list(stats1, stats2, nomwage, realwage, wY, wX, cx, exports, expgdp)
   return(outputs)
 }
+
+
+#################################
+# Grid search algorithm for Fx
+
+
+fxfind_int<-function(skilldist, Fx, var){
+  var[[8]]<-Fx
+  zbar<-findeq(skilldist, var)  
+  shwork_y<-outputs(zbar, skilldist, var)[[2]]
+  return(shwork_y)
+}
+
+
+
+
 
 
 #################################

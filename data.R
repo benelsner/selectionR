@@ -13,7 +13,7 @@ sigma<-4
 #gx<-c(2,1.6)
 gy<-c(0.9,1)
 gx<-c(2,1.6)
-Fx<-c(5, 7.5)
+Fx<-c(5,2)
 #Fx<-c(2,4)
 #Fx<-c(0.45,0.5)
 tau<-1.4
@@ -34,6 +34,7 @@ tau<-1.4
 
 # Parameters for computation
   gridlength<-100 # over how many cells should the optimal zbar be searched
+  grid_fx<-20 # length of grid for searching fixed costs
   nrbins<-5 # number of wage bins to be reported in the outputs
     
   
