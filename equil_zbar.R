@@ -4,6 +4,24 @@
 # Compute optimal zbar for different set-ups
 #####################################################
 
+# Find the right fixed costs AND the optimal zbar in the baseline
+
+  vec_fx<-seq(from=1, to=grid_fx, by=1)
+  gridfx<-as.matrix(expand.grid(x=vec_fx, y=vec_fx))
+  gridcells_fx<-dim(gridfx)[1]
+  #gridfx.list<-split(gridfx, seq(nrow(gridfx)))
+  
+  vars.list<-list(vars)[rep(1,dim(gridfx)[1])]
+  for (i in 1:gridcells_fx){
+    vars.list[[i]][[8]]<-gridfx[i,]
+  }
+  
+  z_bar_fx<-t(sapply(1:gridcells_fx, function(i) findeq(skills[[1]], vars.list[[i]])))
+  z_bar_fx<-split(z_bar_fx, seq(nrow(z_bar_fx)))
+  shwork_y_fx<-sapply(1:gridcells_fx, function(i) outputs(z_bar_fx[[i]], skills[[1]], vars.list[[i]])[[2]])
+
+
+########################################################
 # Find the optimal zbar
   # skills: list with skill distributions; 
   zbar<-lapply(skills, findeq, vars)

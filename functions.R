@@ -130,10 +130,12 @@ findeq<-function(skilldist, vars){
     eqmatrix<-sapply(1:gridlength, function(j) sapply(1:gridlength, function(i) equil(c(grid[i],grid[j]), skilldist,vars)[[1]][[5]]))
   
   # replace NaN with very high value
-    eqmatrix[is.nan(eqmatrix)]<-10^6 
-  
+    #eqmatrix[is.nan(eqmatrix)]<-10^6 
+    eqmatrix<-replace(eqmatrix, is.na(eqmatrix), 10^6)
+    eqmatrix<-as.matrix(eqmatrix)
+    
   # locate the minimum value of the equilibrium conditions
-    indmin<-which(eqmatrix == min(eqmatrix), arr.ind = TRUE) # locate minimum value
+    indmin<-as.matrix(which(eqmatrix == min(eqmatrix), arr.ind = TRUE)) # locate minimum value
     zbar_opt<-c(grid[indmin[1,1]],grid[indmin[1,2]])
     
   return(zbar_opt)
@@ -180,11 +182,12 @@ outputs<-function(zbar, skilldist, vars){
 # Grid search algorithm for Fx
 
 
-fxfind_int<-function(skilldist, Fx, var){
+fxfind_int<-function(Fx, skilldist, var){
   var[[8]]<-Fx
   zbar<-findeq(skilldist, var)  
   shwork_y<-outputs(zbar, skilldist, var)[[2]]
-  return(shwork_y)
+  output.list<-list(zbar, shwork_y)
+  return(output.list)
 }
 
 

@@ -34,7 +34,7 @@ tau<-1.4
 
 # Parameters for computation
   gridlength<-100 # over how many cells should the optimal zbar be searched
-  grid_fx<-20 # length of grid for searching fixed costs
+  grid_fx<-10 # length of grid for searching fixed costs
   nrbins<-5 # number of wage bins to be reported in the outputs
     
   
