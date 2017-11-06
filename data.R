@@ -33,9 +33,14 @@ tau<-1.4
   pop_us_nat<-pop_us-mig
 
 # Parameters for computation
-  gridlength<-100 # over how many cells should the optimal zbar be searched
+  gridlength<-50 # over how many cells should the optimal zbar be searched
   grid_fx<-10 # length of grid for searching fixed costs
   nrbins<-5 # number of wage bins to be reported in the outputs
+  
+  target_shy_mex<-0.7 # target number of workers in sector Y
+  target_shy_us<-0.3
+  
+  
     
   
 # data - skill distributions

@@ -135,7 +135,7 @@ findeq<-function(skilldist, vars){
     eqmatrix<-as.matrix(eqmatrix)
     
   # locate the minimum value of the equilibrium conditions
-    indmin<-as.matrix(which(eqmatrix == min(eqmatrix), arr.ind = TRUE)) # locate minimum value
+    indmin<-as.matrix(which(eqmatrix == min(eqmatrix), arr.ind = TRUE)) # locate minimum value 
     zbar_opt<-c(grid[indmin[1,1]],grid[indmin[1,2]])
     
   return(zbar_opt)

@@ -26,6 +26,9 @@ library(xtable)
   # distributional plots (to check if data make sense)
     source("plots.R")
 
+  # find fixed costs
+    source("findfx.R")
+
   # compute equilibrium zbar
     source("equil_zbar.R")
 
