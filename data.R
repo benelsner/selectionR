@@ -11,18 +11,21 @@ sigma<-4
 
 #gy<-c(0.9,1)
 #gx<-c(2,1.6)
-gy<-c(0.9,1)
-gx<-c(2,1.6)
-Fx<-c(5,2)
+gy<-c(1,0.9)
+#gx<-c(2,1.6)
+gx<-c(1.6,2)
+Fx<-c(1,2)
 #Fx<-c(2,4)
 #Fx<-c(0.45,0.5)
-tau<-1.4
+tau<-4
 
 
 # data - single values
-  gdp_us<-45055 # Source: St.Louis FED, in constant prices
-  gdp_mex<-8660 # Source: dito
-  
+  #gdp_us<-45055 # Source: St.Louis FED, in constant prices
+  #gdp_mex<-14198 # Source: World bank?
+  gdp_mex<-0.4 ## productivity rather than GDP  
+
+
   #pop_us<-282 ## total population in 2000; US census bureau
   #pop_mex<-102 ## total population living in the country; source: World bank
   pop_us <-143 ## US census bureau
@@ -103,7 +106,7 @@ tau<-1.4
   #skills<-list(cbind(us.sel1,mex.sel1),cbind(us.neu1, mex.neu1))
 
 # parameters to be calculated from data
-  lambda<-c(1, gdp_mex/gdp_us)
+  lambda<-c(1, gdp_mex)
   M<-c(1, pop_mex/pop_us)
   
   a<-1/length(mex.sel)

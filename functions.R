@@ -169,7 +169,7 @@ outputs<-function(zbar, skilldist, vars){
     
     # trade
     #expgdp<-exports/Wbar*P
-    expgdp<-exports/(gdppc*vars[[5]])
+    expgdp<-exports[1]/(gdppc*vars[[5]])
     
     stats1<-data.frame(rbind(gdppc, Wbar, P))
     stats2<-data.frame(shwork_y)
