@@ -24,10 +24,10 @@ library(xtable)
     source("data.R")
 
   # distributional plots (to check if data make sense)
-    source("plots.R")
+    #source("plots.R")
 
   # find fixed costs #  attention: resource-heavy code; 
-    #source("findfx.R")
+    source("fxfind.R")
 
   # compute equilibrium zbar
     source("equil_zbar.R")
@@ -38,6 +38,7 @@ library(xtable)
 eqvars1[[1]][1,2]/eqvars1[[1]][1,1]
 eqvars2[[1]]
 eq_expgdp[[1]]
+eq_tradegdp
 
 #zbar_opt
     

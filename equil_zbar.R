@@ -19,9 +19,12 @@
   eqnomwages<-lapply(1:length(skills), function(i) outputs(zbar[[i]], skills[[i]], vars)[[3]])  # nominal wages
   eqrealwages<-lapply(1:length(skills), function(i) outputs(zbar[[i]], skills[[i]], vars)[[4]]) # real wages
   eq_cx<-lapply(1:length(skills), function(i) outputs(zbar[[i]], skills[[i]], vars)[[7]]) # unit costs
-  eq_exports<-lapply(1:length(skills), function(i) outputs(zbar[[i]], skills[[i]], vars)[[8]]) # exports 
+  eq_exports<-lapply(1:length(skills), function(i) outputs(zbar[[i]], skills[[i]], vars)[[8]]) # exports sector x 
   eq_expgdp<-lapply(1:length(skills), function(i) outputs(zbar[[i]], skills[[i]], vars)[[9]]) # exports 
+  eq_exports_y<-lapply(1:length(skills), function(i) outputs(zbar[[i]], skills[[i]], vars)[[10]]) # exports sector y  
+  eq_tradegdp<-lapply(1:length(skills), function(i) outputs(zbar[[i]], skills[[i]], vars)[[11]]) # exports sector y  
   
+    
 # Compute relative difference selected-neutral
   col<-c("US", "Mexico")
   

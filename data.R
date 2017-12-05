@@ -17,7 +17,7 @@ gx<-c(1.6,2)
 Fx<-c(1,2)
 #Fx<-c(2,4)
 #Fx<-c(0.45,0.5)
-tau<-4
+tau<-1.8
 
 
 # data - single values
@@ -40,8 +40,8 @@ tau<-4
   grid_fx<-10 # length of grid for searching fixed costs
   nrbins<-5 # number of wage bins to be reported in the outputs
   
-  target_shy_mex<-0.7 # target number of workers in sector Y
-  target_shy_us<-0.3
+  target_shy_mex<-0.6 # target number of workers in sector Y
+  target_shy_us<-0.5
   
   
     

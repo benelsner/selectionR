@@ -107,13 +107,18 @@ equil <- function(zbar, skilldist, vars) {
   # exports
   exports1 <- M[1]*lambda[1]/(sigma*Fx[1])*intX[1]*sPx[2]*M[2]*Wbar[2]*Px[2]^(sigma-1)*(p[2]*tau)^(1-sigma) ## exports US->Mexico
   exports2 <- M[2]*lambda[2]/(sigma*Fx[2])*intX[2]*sPx[1]*M[1]*Wbar[1]*Px[1]^(sigma-1)*(p[1]*tau)^(1-sigma) ## exports Mexico->US
-  exports<-c(exports1, exports2)
+  exports_x<-c(exports1, exports2)
+  
+  exports_y1<-M[1]*lambda[1]*intY[1]-(1-sPx[1])*M[1]*Wbar[1]
+  exports_y2<-M[2]*lambda[2]*intY[2]-(1-sPx[2])*M[2]*Wbar[2]
+  exports_y<-c(exports_y1, exports_y2)
+  totaltrade<-sum(abs(exports_x))+sum(abs(exports_y))
   
   
   #output<-abs(abs(EQ1)+abs(EQ2))
   #return(output)
   EQ<-list(EQ1, EQ2, EQ3, EQ4, abs(EQ1)+abs(EQ2), Fxratio) 
-  EQoutcomes<-list(Wbar, P, yweight, xweight, cx, exports)
+  EQoutcomes<-list(Wbar, P, yweight, xweight, cx, exports_x, exports_y, totaltrade)
   outputs<-list(EQ, EQoutcomes)
   return(outputs)
 }
@@ -153,7 +158,9 @@ outputs<-function(zbar, skilldist, vars){
     yweight<-eqvalues[[3]]
     xweight<-eqvalues[[4]]
     cx<-eqvalues[[5]]  
-    exports<-eqvalues[[6]]
+    exports_x<-eqvalues[[6]]
+    exports_y<-eqvalues[[7]]
+    totaltrade<-eqvalues[[8]]
     
     #real GDP per capita
     gdppc<-Wbar/P  
@@ -169,11 +176,14 @@ outputs<-function(zbar, skilldist, vars){
     
     # trade
     #expgdp<-exports/Wbar*P
-    expgdp<-exports[1]/(gdppc*vars[[5]])
+    totgdp<-gdppc[1]*vars[[5]][1]+gdppc[2]*vars[[5]][2]
+    tradegdp<-totaltrade/totgdp
+    
+    expgdp<-exports_x[1]/(gdppc*vars[[5]])
     
     stats1<-data.frame(rbind(gdppc, Wbar, P))
     stats2<-data.frame(shwork_y)
-    outputs<-list(stats1, stats2, nomwage, realwage, wY, wX, cx, exports, expgdp)
+    outputs<-list(stats1, stats2, nomwage, realwage, wY, wX, cx, exports_x, expgdp, exports_y, tradegdp)
   return(outputs)
 }
 
