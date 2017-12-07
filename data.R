@@ -23,7 +23,7 @@ tau<-1.8
 # data - single values
   #gdp_us<-45055 # Source: St.Louis FED, in constant prices
   #gdp_mex<-14198 # Source: World bank?
-  gdp_mex<-0.4 ## productivity rather than GDP  
+  gdp_mex<-0.5 ## productivity rather than GDP  
 
 
   #pop_us<-282 ## total population in 2000; US census bureau
@@ -105,6 +105,10 @@ tau<-1.8
   skills<-list(cbind(us.sel,mex.sel),cbind(us.neu, mex.neu))
   #skills<-list(cbind(us.sel1,mex.sel1),cbind(us.neu1, mex.neu1))
 
+# population weights
+  popweight_us<-pop_us/(pop_us+pop_mex)
+  popweight_mex<-1-popweight_us
+  
 # parameters to be calculated from data
   lambda<-c(1, gdp_mex)
   M<-c(1, pop_mex/pop_us)
