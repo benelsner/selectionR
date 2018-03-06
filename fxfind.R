@@ -9,6 +9,7 @@
 #############################
   # stepwise algorithm
   
+  # idea: start with large intervals for the fixed costs in each country; narrow down the intervals until the share of workers in sector Y converges
 
   # function: find minimizing fixed cost combination
     fx_fun<-function(vec_fx, skills, vars){
@@ -50,10 +51,10 @@
     
 
   # EXECUTE algorithm    
-    steps<-c(0.5, 0.1, 0.05 , 0.01, 0.005, 0.001)
-    start_from<-0.5
-    start_to<-2
-    start_by<-0.5
+    steps<-c(5,1,0.5,0.1, 0.05 , 0.01, 0.005, 0.001)
+    start_from<-10
+    start_to<-100
+    start_by<-10
     vec_fx_start<-list(seq(from=start_from, to=start_to, by=start_by), seq(from=start_from, to=start_to, by=start_by))
     
     fx_results <- vector(mode = "list", length = length(steps))
@@ -69,6 +70,11 @@
       vec_fx[[1]]<-seq(from=fx_results[[i-1]][[1]][1]-steps[i-1], to=fx_results[[i-1]][[1]][1]+steps[i-1], by=steps[i])
       vec_fx[[2]]<-seq(from=fx_results[[i-1]][[1]][2]-steps[i-1], to=fx_results[[i-1]][[1]][2]+steps[i-1], by=steps[i])
       fx_results[[i]]<-fx_fun(vec_fx, skills[[1]], vars)
+      if (abs(fx_results[[i]][[2]][1]-fx_results[[i-1]][[2]][1])<0.1){
+        break}
       #shy_list[[1]]<-fx_fun(vec_fx_start, skills[[1]], vars)[[2]]    
     }
-  
+   fx_results <- fx_results[-which(sapply(fx_results, is.null))]
+   id_fx<-length(fx_results)
+   fx_final<-fx_results[[id_fx]][[1]]
+   vars[[7]]<-t(fx_final)

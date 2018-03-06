@@ -27,7 +27,7 @@ library(xtable)
     #source("plots.R")
 
   # find fixed costs #  attention: resource-heavy code; 
-    source("fxfind.R")
+    #source("fxfind.R")
 
   # compute equilibrium zbar
     source("equil_zbar.R")
@@ -35,12 +35,7 @@ library(xtable)
   # generate tex outputs
     source("texout.R")
 
-eqvars1[[1]][1,2]/eqvars1[[1]][1,1]
+# share of workers in sector Y
 eqvars2[[1]]
-eq_expgdp[[1]]
-eq_tradegdp
-
-#zbar_opt
-    
-  # outputs
-  #equil(c(0.6,0.75), cbind(skills[[1]][,1],skills[[2]][,1]) , vars)
+# trade as a share of total GDP
+eq_tradegdp[[1]]
