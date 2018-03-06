@@ -9,15 +9,20 @@ beta<-0.5
 theta<-1.5
 sigma<-4
 
+
+
+gy<-c(0.4,0.5)
+gx<-c(2,1.5)
 #gy<-c(0.9,1)
 #gx<-c(2,1.6)
-gy<-c(1,0.9)
+#gy<-c(1,0.9)
 #gx<-c(2,1.6)
-gx<-c(1.6,2)
-Fx<-c(1,2)
+#gx<-c(1.6,2)
+#Fx<-c(1,2)
 #Fx<-c(2,4)
-#Fx<-c(0.45,0.5)
-tau<-1.8
+#Fx<-c(0.15,0.3) # obtained from fxfind.R
+Fx<-c(100,30)
+tau<-1.4
 
 
 # data - single values
@@ -36,7 +41,7 @@ tau<-1.8
   pop_us_nat<-pop_us-mig
 
 # Parameters for computation
-  gridlength<-50 # over how many cells should the optimal zbar be searched
+  gridlength<-100 # over how many cells should the optimal zbar be searched
   grid_fx<-10 # length of grid for searching fixed costs
   nrbins<-5 # number of wage bins to be reported in the outputs
   
@@ -52,8 +57,8 @@ tau<-1.8
   mexdata.sel<-data.frame(read_excel('./data/selection.xlsx', sheet=3, col_names=TRUE, skip=2))  
   mexdata.neu<-data.frame(read_excel('./data/selection.xlsx', sheet=4, col_names=TRUE, skip=2))  
     
-  skilldist<-read.xls('./data/skilldistrib_trim.xls')
-  skills_mig_neutral<-read.xls('./data/skilldistrib_weighted_neutral_trim.xls')[1:10,]
+  skilldist<-data.frame(read_excel('./data/skilldistrib_trim.xls', sheet=1, col_names=TRUE))
+  skills_mig_neutral<-data.frame(read_excel('./data/skilldistrib_weighted_neutral_trim.xls', sheet=1, col_names=TRUE)[1:10,])
   wagedec<-data.frame(read_excel('./data/wage_deciles_trim.xls', sheet=1, col_names=FALSE, skip=1)[,11:18])
   
   # Mexican data from 20 bins

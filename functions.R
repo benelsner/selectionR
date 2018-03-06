@@ -94,19 +94,26 @@ equil <- function(zbar, skilldist, vars) {
   
   
   # EQUILIBRIUM CONDITIONS (written so they equal 0)
-  EQ1<-sPx[1]*M[1]*Wbar[1]*(p[1]/Px[1])^(1-sigma) + sPx[2]*M[2]*Wbar[2]*((p[1]*tau)/Px[2])^(1-sigma)-(sigma-1)*Fx[1]*p[1] 
-  EQ2<-sPx[1]*M[1]*Wbar[1]*((p[2]*tau)/Px[1])^(1-sigma) + sPx[2]*M[2]*Wbar[2]*(p[2]/Px[2])^(1-sigma)-(sigma-1)*Fx[2]*p[2] 
+  #EQ1<-sPx[1]*M[1]*Wbar[1]*(p[1]/Px[1])^(1-sigma) + sPx[2]*M[2]*Wbar[2]*((p[1]*tau)/Px[2])^(1-sigma)-(sigma-1)*Fx[1]*p[1] 
+  #EQ2<-sPx[1]*M[1]*Wbar[1]*((p[2]*tau)/Px[1])^(1-sigma) + sPx[2]*M[2]*Wbar[2]*(p[2]/Px[2])^(1-sigma)-(sigma-1)*Fx[2]*p[2] 
+  EQ1<-sPx[1]*M[1]/Px[1]*Wbar[1]*(p[1]/Px[1])^(-sigma) + sPx[2]/Px[2]*M[2]*Wbar[2]*((p[1]*tau)/Px[2])^(-sigma)-(sigma-1)*Fx[1]
+  EQ2<-sPx[1]*M[1]/Px[1]*Wbar[1]*((p[2]*tau)/Px[1])^(-sigma) + sPx[2]*M[2]/Px[2]*Wbar[2]*(p[2]/Px[2])^(-sigma)-(sigma-1)*Fx[2] 
   EQ3<-(1-sPx[1])*M[1]*Wbar[1]+(1-sPx[2])*M[2]*Wbar[2]-M[1]*lambda[1]*intY[1]-M[2]*lambda[2]*intY[2]
   
   # equilibrium only for tau=1
   EQ4<-(exp((gx[1]-gy[1])*zbar[1]))/(exp((gx[2]-gy[2])*zbar[2]))-(Fx[1]/Fx[2])^(1/sigma)
   
+  # EQ1 divided by EQ2
+  EQ5<-(sPx[1]*M[1]/Px[1]*Wbar[1]*(p[1]/Px[1])^(-sigma) + sPx[2]/Px[2]*M[2]*Wbar[2]*((p[1]*tau)/Px[2])^(-sigma))/(sPx[1]*M[1]/Px[1]*Wbar[1]*((p[2]*tau)/Px[1])^(-sigma) + sPx[2]*M[2]/Px[2]*Wbar[2]*(p[2]/Px[2])^(-sigma))-Fx[1]/Fx[2]
+
   # fixed costs to ensure equilibrium in sector X
   Fxratio<-((exp((gx[1]-gy[1])*zbar[1]))/(exp((gx[2]-gy[2])*zbar[2])))^sigma
   
   # exports
-  exports1 <- M[1]*lambda[1]/(sigma*Fx[1])*intX[1]*sPx[2]*M[2]*Wbar[2]*Px[2]^(sigma-1)*(p[2]*tau)^(1-sigma) ## exports US->Mexico
-  exports2 <- M[2]*lambda[2]/(sigma*Fx[2])*intX[2]*sPx[1]*M[1]*Wbar[1]*Px[1]^(sigma-1)*(p[1]*tau)^(1-sigma) ## exports Mexico->US
+  #exports1 <- M[1]*lambda[1]/(sigma*Fx[1])*intX[1]*sPx[2]*M[2]*Wbar[2]*Px[2]^(sigma-1)*(p[2]*tau)^(1-sigma) ## exports US->Mexico
+  #exports2 <- M[2]*lambda[2]/(sigma*Fx[2])*intX[2]*sPx[1]*M[1]*Wbar[1]*Px[1]^(sigma-1)*(p[1]*tau)^(1-sigma) ## exports Mexico->US
+  exports1<-sPx[2]*M[2]*Wbar[2]*Px[2]^(sigma-1)*(p[1]*tau)^(-sigma)
+  exports2<-sPx[1]*M[1]*Wbar[1]*Px[1]^(sigma-1)*(p[2]*tau)^(-sigma)
   exports_x<-c(exports1, exports2)
   
   exports_y1<-M[1]*lambda[1]*intY[1]-(1-sPx[1])*M[1]*Wbar[1]
@@ -117,7 +124,7 @@ equil <- function(zbar, skilldist, vars) {
   
   #output<-abs(abs(EQ1)+abs(EQ2))
   #return(output)
-  EQ<-list(EQ1, EQ2, EQ3, EQ4, abs(EQ1)+abs(EQ2), Fxratio) 
+  EQ<-list(EQ1, EQ2, EQ3, EQ4, EQ5, abs(EQ1)+abs(EQ2), Fxratio) 
   EQoutcomes<-list(Wbar, P, yweight, xweight, cx, exports_x, exports_y, totaltrade)
   outputs<-list(EQ, EQoutcomes)
   return(outputs)
@@ -183,7 +190,7 @@ outputs<-function(zbar, skilldist, vars){
     
     stats1<-data.frame(rbind(gdppc, Wbar, P))
     stats2<-data.frame(shwork_y)
-    outputs<-list(stats1, stats2, nomwage, realwage, wY, wX, cx, exports_x, expgdp, exports_y, tradegdp)
+    outputs<-list(stats1, stats2, nomwage, realwage, wY, wX, cx, exports_x, expgdp, exports_y,tradegdp)
   return(outputs)
 }
 
